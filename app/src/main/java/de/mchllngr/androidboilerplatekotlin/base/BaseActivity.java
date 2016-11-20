@@ -1,4 +1,4 @@
-package de.mchllngr.androidboilerplate.base;
+package de.mchllngr.androidboilerplatekotlin.base;
 
 import android.support.annotation.Nullable;
 import android.support.annotation.StringRes;
@@ -7,7 +7,7 @@ import android.support.v7.widget.Toolbar;
 import com.hannesdorfmann.mosby.mvp.MvpBasePresenter;
 import com.hannesdorfmann.mosby.mvp.MvpView;
 
-import de.mchllngr.androidboilerplate.R;
+import de.mchllngr.androidboilerplatekotlin.R;
 
 /**
  * Base-class for work concerning every {@link android.app.Activity}.

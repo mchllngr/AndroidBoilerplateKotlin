@@ -1,4 +1,4 @@
-package de.mchllngr.androidboilerplate.base;
+package de.mchllngr.androidboilerplatekotlin.base;
 
 import com.hannesdorfmann.mosby.mvp.MvpActivity;
 import com.hannesdorfmann.mosby.mvp.MvpBasePresenter;

@@ -1,4 +1,4 @@
-package de.mchllngr.androidboilerplate;
+package de.mchllngr.androidboilerplatekotlin;
 
 import android.content.Context;
 import android.support.test.InstrumentationRegistry;
@@ -21,6 +21,6 @@ public class ExampleInstrumentedTest {
         // Context of the app under test.
         Context appContext = InstrumentationRegistry.getTargetContext();
 
-        assertEquals("de.mchllngr.androidboilerplate", appContext.getPackageName());
+        assertEquals("de.mchllngr.androidboilerplatekotlin", appContext.getPackageName());
     }
 }

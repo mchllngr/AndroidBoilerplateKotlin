@@ -1,4 +1,4 @@
-package de.mchllngr.androidboilerplate.util.debug;
+package de.mchllngr.androidboilerplatekotlin.util.debug;
 
 import android.support.annotation.NonNull;
 import android.support.v7.app.AppCompatActivity;
@@ -8,7 +8,7 @@ import java.util.Arrays;
 
 import butterknife.BindString;
 import butterknife.ButterKnife;
-import de.mchllngr.androidboilerplate.R;
+import de.mchllngr.androidboilerplatekotlin.R;
 import io.palaima.debugdrawer.DebugDrawer;
 import io.palaima.debugdrawer.actions.ActionsModule;
 import io.palaima.debugdrawer.actions.SpinnerAction;

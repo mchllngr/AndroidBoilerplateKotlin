@@ -1,11 +1,11 @@
-package de.mchllngr.androidboilerplate;
+package de.mchllngr.androidboilerplatekotlin;
 
 import android.support.v7.app.AppCompatDelegate;
 
-import de.mchllngr.androidboilerplate.base.BaseApp;
-import de.mchllngr.androidboilerplate.injection.ApplicationComponent;
-import de.mchllngr.androidboilerplate.injection.ApplicationModule;
-import de.mchllngr.androidboilerplate.injection.DaggerApplicationComponent;
+import de.mchllngr.androidboilerplatekotlin.base.BaseApp;
+import de.mchllngr.androidboilerplatekotlin.injection.ApplicationComponent;
+import de.mchllngr.androidboilerplatekotlin.injection.ApplicationModule;
+import de.mchllngr.androidboilerplatekotlin.injection.DaggerApplicationComponent;
 
 /**
  * {@link App} for the {@link android.app.Application}

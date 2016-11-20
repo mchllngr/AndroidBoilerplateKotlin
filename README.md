@@ -1,5 +1,5 @@
-# AndroidBoilerplate
-An empty android-app with all the boilerplate code I had to write every time I started a new app.
+# AndroidBoilerplateKotlin
+An empty android-app with all the boilerplate code I had to write every time I started a new app (written in Kotlin).
 
 # TODO
 - add Parceler ? (https://github.com/johncarl81/parceler)

@@ -1,4 +1,4 @@
-package de.mchllngr.androidboilerplate.util.timber;
+package de.mchllngr.androidboilerplatekotlin.util.timber;
 
 import android.util.Log;
 

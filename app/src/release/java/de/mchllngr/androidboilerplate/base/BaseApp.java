@@ -1,8 +1,8 @@
-package de.mchllngr.androidboilerplate.base;
+package de.mchllngr.androidboilerplatekotlin.base;
 
 import android.app.Application;
 
-import de.mchllngr.androidboilerplate.util.timber.ReleaseTree;
+import de.mchllngr.androidboilerplatekotlin.util.timber.ReleaseTree;
 import timber.log.Timber;
 
 /**

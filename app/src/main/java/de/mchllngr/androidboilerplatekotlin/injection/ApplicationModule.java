@@ -1,4 +1,4 @@
-package de.mchllngr.androidboilerplate.injection;
+package de.mchllngr.androidboilerplatekotlin.injection;
 
 import dagger.Module;
 

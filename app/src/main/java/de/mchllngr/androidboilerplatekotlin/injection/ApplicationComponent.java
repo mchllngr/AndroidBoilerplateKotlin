@@ -1,9 +1,9 @@
-package de.mchllngr.androidboilerplate.injection;
+package de.mchllngr.androidboilerplatekotlin.injection;
 
 import javax.inject.Singleton;
 
 import dagger.Component;
-import de.mchllngr.androidboilerplate.module.main.MainPresenter;
+import de.mchllngr.androidboilerplatekotlin.module.main.MainPresenter;
 
 /**
  * Dagger2-component for the whole application.

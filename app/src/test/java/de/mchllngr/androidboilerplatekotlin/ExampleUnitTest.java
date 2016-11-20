@@ -1,4 +1,4 @@
-package de.mchllngr.androidboilerplate;
+package de.mchllngr.androidboilerplatekotlin;
 
 import org.junit.Test;
 

@@ -1,12 +1,12 @@
-package de.mchllngr.androidboilerplate.base;
+package de.mchllngr.androidboilerplatekotlin.base;
 
 import android.support.annotation.Nullable;
 
 import com.hannesdorfmann.mosby.mvp.MvpBasePresenter;
 import com.hannesdorfmann.mosby.mvp.MvpPresenter;
 
-import de.mchllngr.androidboilerplate.App;
-import de.mchllngr.androidboilerplate.injection.ApplicationComponent;
+import de.mchllngr.androidboilerplatekotlin.App;
+import de.mchllngr.androidboilerplatekotlin.injection.ApplicationComponent;
 
 /**
  * Base-class for work concerning every {@link MvpPresenter}.

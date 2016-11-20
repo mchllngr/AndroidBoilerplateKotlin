@@ -1,9 +1,15 @@
 apply plugin: 'com.android.application'
+apply plugin: 'kotlin-android'
+apply plugin: 'kotlin-android-extensions'
 apply plugin: 'com.getkeepsafe.dexcount'
 
 def keystorePropertiesFile = rootProject.file("keystore.properties");
 def keystoreProperties = new Properties()
 keystoreProperties.load(new FileInputStream(keystorePropertiesFile))
+
+repositories {
+    mavenCentral()
+}
 
 android {
     compileSdkVersion rootProject.ext.COMPILE_SDK_VERSION
@@ -57,10 +63,15 @@ android {
             events 'passed', 'skipped', 'failed', 'standardOut', 'standardError'
         }
     }
+    sourceSets {
+        main.java.srcDirs += 'src/main/kotlin'
+    }
 }
 
 dependencies {
     compile fileTree(dir: 'libs', include: ['*.jar'])
+
+    compile "org.jetbrains.kotlin:kotlin-stdlib:$KOTLIN_VERSION"
 
     compile "com.android.support:appcompat-v7:$rootProject.ext.SUPPORT_VERSION"
     compile "com.android.support:design:$rootProject.ext.SUPPORT_VERSION"

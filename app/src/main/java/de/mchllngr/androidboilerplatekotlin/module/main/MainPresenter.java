@@ -1,6 +1,6 @@
-package de.mchllngr.androidboilerplate.module.main;
+package de.mchllngr.androidboilerplatekotlin.module.main;
 
-import de.mchllngr.androidboilerplate.base.BasePresenter;
+import de.mchllngr.androidboilerplatekotlin.base.BasePresenter;
 
 /**
  * {@link com.hannesdorfmann.mosby.mvp.MvpPresenter} for the {@link MainActivity}
