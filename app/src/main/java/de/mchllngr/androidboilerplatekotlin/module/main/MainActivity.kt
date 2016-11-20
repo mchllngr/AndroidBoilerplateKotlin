@@ -5,7 +5,6 @@ import android.content.Intent
 import android.os.Bundle
 import android.support.design.widget.Snackbar
 import android.support.v4.app.FragmentActivity
-import android.util.Log
 import butterknife.ButterKnife
 import de.mchllngr.androidboilerplatekotlin.R
 import de.mchllngr.androidboilerplatekotlin.base.BaseActivity
@@ -15,6 +14,9 @@ import kotlinx.android.synthetic.main.activity_main.*
  * [android.app.Activity] for KotlinTest.
  */
 class MainActivity : BaseActivity<MainView, MainPresenter>(), MainView {
+
+    override val activity: FragmentActivity
+        get() = this
 
     companion object {
         /**
@@ -40,9 +42,5 @@ class MainActivity : BaseActivity<MainView, MainPresenter>(), MainView {
             Snackbar.make(view, "Replace with your own action", Snackbar.LENGTH_LONG)
                     .setAction("Action", null).show()
         }
-    }
-
-    override fun getActivity(): FragmentActivity {
-        return this
     }
 }

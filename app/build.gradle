@@ -1,5 +1,6 @@
 apply plugin: 'com.android.application'
 apply plugin: 'kotlin-android'
+apply plugin: 'kotlin-kapt'
 apply plugin: 'kotlin-android-extensions'
 apply plugin: 'com.getkeepsafe.dexcount'
 
@@ -21,7 +22,7 @@ android {
     }
 
     defaultConfig {
-        applicationId "de.mchllngr.androidboilerplate"
+        applicationId "de.mchllngr.androidboilerplatekotlin"
         minSdkVersion rootProject.ext.MIN_SDK_VERSION
         targetSdkVersion rootProject.ext.TARGET_SDK_VERSION
         versionCode rootProject.ext.VERSIONCODE
@@ -63,6 +64,7 @@ android {
             events 'passed', 'skipped', 'failed', 'standardOut', 'standardError'
         }
     }
+
     sourceSets {
         main.java.srcDirs += 'src/main/kotlin'
     }
@@ -71,7 +73,7 @@ android {
 dependencies {
     compile fileTree(dir: 'libs', include: ['*.jar'])
 
-    compile "org.jetbrains.kotlin:kotlin-stdlib:$KOTLIN_VERSION"
+    compile "org.jetbrains.kotlin:kotlin-stdlib:$kotlin_version"
 
     compile "com.android.support:appcompat-v7:$rootProject.ext.SUPPORT_VERSION"
     compile "com.android.support:design:$rootProject.ext.SUPPORT_VERSION"
@@ -82,7 +84,7 @@ dependencies {
     annotationProcessor "com.jakewharton:butterknife-compiler:$rootProject.ext.BUTTERKNIFE_VERSION"
 
     compile "com.google.dagger:dagger:$rootProject.ext.DAGGER2_VERSION"
-    annotationProcessor "com.google.dagger:dagger-compiler:$rootProject.ext.DAGGER2_VERSION"
+    kapt "com.google.dagger:dagger-compiler:$rootProject.ext.DAGGER2_VERSION"
 
     compile "com.jakewharton.timber:timber:$rootProject.ext.TIMBER_VERSION"
 
