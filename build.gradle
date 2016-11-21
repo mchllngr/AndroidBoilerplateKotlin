@@ -41,7 +41,6 @@ ext {
     // App dependencies
     SUPPORT_VERSION = "24.2.1"
     MOSBY_VERSION = "2.0.1"
-    BUTTERKNIFE_VERSION = "8.4.0"
     DAGGER2_VERSION = "2.7"
     TIMBER_VERSION = "4.1.2"
     STETHO_VERSION = "1.4.1"

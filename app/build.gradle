@@ -80,9 +80,6 @@ dependencies {
 
     compile "com.hannesdorfmann.mosby:mvp:$rootProject.ext.MOSBY_VERSION"
 
-    compile "com.jakewharton:butterknife:$rootProject.ext.BUTTERKNIFE_VERSION"
-    annotationProcessor "com.jakewharton:butterknife-compiler:$rootProject.ext.BUTTERKNIFE_VERSION"
-
     compile "com.google.dagger:dagger:$rootProject.ext.DAGGER2_VERSION"
     kapt "com.google.dagger:dagger-compiler:$rootProject.ext.DAGGER2_VERSION"
 
