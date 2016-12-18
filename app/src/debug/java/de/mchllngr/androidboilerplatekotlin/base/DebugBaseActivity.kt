@@ -1,21 +1,38 @@
 package de.mchllngr.androidboilerplatekotlin.base
 
+import android.Manifest.permission.ACCESS_FINE_LOCATION
 import android.support.annotation.LayoutRes
 import android.view.View
 import android.view.ViewGroup
-
 import com.hannesdorfmann.mosby.mvp.MvpActivity
 import com.hannesdorfmann.mosby.mvp.MvpBasePresenter
 import com.hannesdorfmann.mosby.mvp.MvpView
-
+import com.maxcruz.reactivePermissions.ReactivePermissions
+import com.maxcruz.reactivePermissions.entity.Permission
+import de.mchllngr.androidboilerplatekotlin.R
 import de.mchllngr.androidboilerplatekotlin.util.debug.DebugDrawerHelper
-import io.palaima.debugdrawer.DebugDrawer
 
 /**
  * BaseDebug-class used for initialization of the [DebugDrawer].
  */
 abstract class DebugBaseActivity<V : MvpView, P : MvpBasePresenter<V>> : MvpActivity<V, P>() {
 
+    /**
+     * Request code for requesting the permission.
+     */
+    private val REQUEST_CODE = 1742
+    /**
+     * [Permission] to request.
+     */
+    private val location = Permission(
+            ACCESS_FINE_LOCATION,
+            R.string.debug_permission_location_rationale,
+            true
+    )
+    /**
+     * [ReactivePermissions] reference for requesting the permission.
+     */
+    private var reactive: ReactivePermissions? = null
     /**
      * [DebugDrawerHelper] reference to use.
      */
@@ -29,7 +46,7 @@ abstract class DebugBaseActivity<V : MvpView, P : MvpBasePresenter<V>> : MvpActi
      */
     override fun setContentView(@LayoutRes layoutResID: Int) {
         super.setContentView(layoutResID)
-        setDebugDrawer()
+        setDebugDrawerIfLocationPermission()
     }
 
     /**
@@ -40,7 +57,7 @@ abstract class DebugBaseActivity<V : MvpView, P : MvpBasePresenter<V>> : MvpActi
      */
     override fun setContentView(view: View) {
         super.setContentView(view)
-        setDebugDrawer()
+        setDebugDrawerIfLocationPermission()
     }
 
     /**
@@ -52,16 +69,29 @@ abstract class DebugBaseActivity<V : MvpView, P : MvpBasePresenter<V>> : MvpActi
      */
     override fun setContentView(view: View, params: ViewGroup.LayoutParams) {
         super.setContentView(view, params)
-        setDebugDrawer()
+        setDebugDrawerIfLocationPermission()
+    }
+
+    /**
+     * Initialises the [DebugDrawer] and sets it if the location permission is granted.
+     */
+    private fun setDebugDrawerIfLocationPermission() {
+        if (reactive == null)
+            reactive = ReactivePermissions(this, REQUEST_CODE)
+        reactive?.evaluate(listOf(location))
+        reactive?.observeResultPermissions()?.subscribe { event ->
+            // event.second == isGranted
+            setDebugDrawer(event.second)
+        }
     }
 
     /**
      * Initialises the [DebugDrawer] and sets it.
      */
-    private fun setDebugDrawer() {
+    private fun setDebugDrawer(withLocation: Boolean) {
         if (debugDrawerHelper == null)
             debugDrawerHelper = DebugDrawerHelper(this)
-        debugDrawerHelper?.initDebugDrawer()
+        debugDrawerHelper?.initDebugDrawer(withLocation)
     }
 
     /**
@@ -72,7 +102,6 @@ abstract class DebugBaseActivity<V : MvpView, P : MvpBasePresenter<V>> : MvpActi
         debugDrawerHelper?.onStart()
     }
 
-
     /**
      * Attach [DebugDrawer] to lifecycle.
      */
@@ -80,7 +109,6 @@ abstract class DebugBaseActivity<V : MvpView, P : MvpBasePresenter<V>> : MvpActi
         super.onResume()
         debugDrawerHelper?.onResume()
     }
-
 
     /**
      * Attach [DebugDrawer] to lifecycle.
@@ -90,12 +118,16 @@ abstract class DebugBaseActivity<V : MvpView, P : MvpBasePresenter<V>> : MvpActi
         debugDrawerHelper?.onPause()
     }
 
-
     /**
      * Attach [DebugDrawer] to lifecycle.
      */
     override fun onStop() {
         super.onStop()
         debugDrawerHelper?.onStop()
+    }
+
+    override fun onRequestPermissionsResult(requestCode: Int, permissions: Array<String>, grantResults: IntArray) {
+        if (requestCode == REQUEST_CODE)
+            reactive?.receive(permissions, grantResults)
     }
 }

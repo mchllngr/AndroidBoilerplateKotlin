@@ -85,14 +85,18 @@ dependencies {
 
     compile "com.jakewharton.timber:timber:$rootProject.ext.TIMBER_VERSION"
 
+    compile "com.github.maxcruz:reactive-permissions:$rootProject.ext.REACTIVE_PERMISSIONS_VERSION"
+
     debugCompile "com.facebook.stetho:stetho:$rootProject.ext.STETHO_VERSION"
 
     debugCompile "io.palaima.debugdrawer:debugdrawer:$rootProject.ext.DEBUGDRAWER_VERSION"
     debugCompile "io.palaima.debugdrawer:debugdrawer-commons:$rootProject.ext.DEBUGDRAWER_VERSION"
     debugCompile "io.palaima.debugdrawer:debugdrawer-actions:$rootProject.ext.DEBUGDRAWER_VERSION"
+    debugCompile "io.palaima.debugdrawer:debugdrawer-location:$rootProject.ext.DEBUGDRAWER_VERSION"
     debugCompile "io.palaima.debugdrawer:debugdrawer-scalpel:$rootProject.ext.DEBUGDRAWER_VERSION"
     debugCompile "io.palaima.debugdrawer:debugdrawer-fps:$rootProject.ext.DEBUGDRAWER_VERSION"
     // Used by DebugDrawer
+    debugCompile "com.google.android.gms:play-services-location:$rootProject.ext.PLAY_SERVICES_LOCATION_VERSION"
     debugCompile "com.jakewharton.scalpel:scalpel:$rootProject.ext.SCALPEL_VERSION"
     debugCompile "jp.wasabeef:takt:$rootProject.ext.TAKT_VERSION"
 

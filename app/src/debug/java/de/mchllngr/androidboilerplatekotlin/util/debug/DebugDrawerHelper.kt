@@ -9,8 +9,8 @@ import io.palaima.debugdrawer.actions.SpinnerAction
 import io.palaima.debugdrawer.commons.BuildModule
 import io.palaima.debugdrawer.commons.DeviceModule
 import io.palaima.debugdrawer.commons.NetworkModule
-import io.palaima.debugdrawer.commons.SettingsModule
 import io.palaima.debugdrawer.fps.FpsModule
+import io.palaima.debugdrawer.location.LocationModule
 import io.palaima.debugdrawer.scalpel.ScalpelModule
 import jp.wasabeef.takt.Takt
 import java.util.*
@@ -44,21 +44,33 @@ class DebugDrawerHelper(private val activity: AppCompatActivity) {
      */
     private var debugDrawer: DebugDrawer? = null
 
-
     /**
      * Initialises the [DebugDrawer].
      */
-    fun initDebugDrawer() {
-        debugDrawer = DebugDrawer.Builder(activity)
-                .modules(
-                        ActionsModule(nightModeActionsModule),
-                        NetworkModule(activity),
-                        ScalpelModule(activity),
-                        FpsModule(Takt.stock(activity.application)),
-                        BuildModule(activity),
-                        DeviceModule(activity),
-                        SettingsModule(activity)
-                ).build()
+    fun initDebugDrawer(withLocation: Boolean) {
+        val debugDrawerBuilder: DebugDrawer.Builder = DebugDrawer.Builder(activity)
+
+        if (withLocation)
+            debugDrawerBuilder.modules(
+                    ActionsModule(nightModeActionsModule),
+                    ScalpelModule(activity),
+                    LocationModule(activity),
+                    NetworkModule(activity),
+                    FpsModule(Takt.stock(activity.application)),
+                    BuildModule(activity),
+                    DeviceModule(activity)
+            )
+        else
+            debugDrawerBuilder.modules(
+                    ActionsModule(nightModeActionsModule),
+                    ScalpelModule(activity),
+                    NetworkModule(activity),
+                    FpsModule(Takt.stock(activity.application)),
+                    BuildModule(activity),
+                    DeviceModule(activity)
+            )
+
+        debugDrawer = debugDrawerBuilder.build()
     }
 
     /**
