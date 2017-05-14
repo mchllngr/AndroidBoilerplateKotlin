@@ -3,7 +3,7 @@ package de.mchllngr.androidboilerplatekotlin.module.main
 import de.mchllngr.androidboilerplatekotlin.base.BasePresenter
 
 /**
- * [com.hannesdorfmann.mosby.mvp.MvpPresenter] for the [MainActivity]
+ * [com.hannesdorfmann.mosby3.mvp.MvpPresenter] for the [MainActivity]
  */
 class MainPresenter : BasePresenter<MainView>() {
 

@@ -4,9 +4,9 @@ import android.Manifest.permission.ACCESS_FINE_LOCATION
 import android.support.annotation.LayoutRes
 import android.view.View
 import android.view.ViewGroup
-import com.hannesdorfmann.mosby.mvp.MvpActivity
-import com.hannesdorfmann.mosby.mvp.MvpBasePresenter
-import com.hannesdorfmann.mosby.mvp.MvpView
+import com.hannesdorfmann.mosby3.mvp.MvpActivity
+import com.hannesdorfmann.mosby3.mvp.MvpBasePresenter
+import com.hannesdorfmann.mosby3.mvp.MvpView
 import com.maxcruz.reactivePermissions.ReactivePermissions
 import com.maxcruz.reactivePermissions.entity.Permission
 import de.mchllngr.androidboilerplatekotlin.R

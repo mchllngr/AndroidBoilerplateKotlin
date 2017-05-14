@@ -3,8 +3,8 @@ package de.mchllngr.androidboilerplatekotlin.base
 import android.support.annotation.StringRes
 import android.support.v7.widget.Toolbar
 
-import com.hannesdorfmann.mosby.mvp.MvpBasePresenter
-import com.hannesdorfmann.mosby.mvp.MvpView
+import com.hannesdorfmann.mosby3.mvp.MvpBasePresenter
+import com.hannesdorfmann.mosby3.mvp.MvpView
 
 import de.mchllngr.androidboilerplatekotlin.R
 

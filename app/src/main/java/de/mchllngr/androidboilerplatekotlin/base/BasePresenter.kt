@@ -1,7 +1,7 @@
 package de.mchllngr.androidboilerplatekotlin.base
 
-import com.hannesdorfmann.mosby.mvp.MvpBasePresenter
-import com.hannesdorfmann.mosby.mvp.MvpPresenter
+import com.hannesdorfmann.mosby3.mvp.MvpBasePresenter
+import com.hannesdorfmann.mosby3.mvp.MvpPresenter
 
 import de.mchllngr.androidboilerplatekotlin.App
 import de.mchllngr.androidboilerplatekotlin.injection.ApplicationComponent
