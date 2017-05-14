@@ -65,6 +65,13 @@ android {
         }
     }
 
+// Currently not working, because kotlin doesn't support lint
+//    // Stop build on stopship-comment (only in release)
+//    lintOptions {
+//        abortOnError true
+//        fatal 'StopShip'
+//    }
+
     sourceSets {
         main.java.srcDirs += 'src/main/kotlin'
     }
