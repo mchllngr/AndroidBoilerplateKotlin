@@ -1,28 +1,16 @@
 package de.mchllngr.androidboilerplatekotlin.base
 
 import android.support.annotation.StringRes
+import android.support.v4.app.Fragment
 
-import com.hannesdorfmann.mosby3.mvp.MvpBasePresenter
-import com.hannesdorfmann.mosby3.mvp.MvpFragment
-import com.hannesdorfmann.mosby3.mvp.MvpView
-
-/**
- * Base-class for work concerning every [android.support.v4.app.Fragment].
- *
- * @param [V] view-interface for this fragment
- * @param [P] presenter for this fragment
- */
-abstract class BaseFragment<V : MvpView, P : MvpBasePresenter<V>> : MvpFragment<V, P>() {
+abstract class BaseFragment : Fragment() {
 
     /**
-     * Sets the title for the [android.support.v7.app.ActionBar] in the
-     * [android.app.Activity] via the given [StringRes] if the
-     * [android.app.Activity] is a subclass from [BaseActivity].
+     * Sets the title for the [android.support.v7.app.ActionBar].
      *
      * @param titleResId [StringRes] for the title
      */
     fun setActionBarTitle(@StringRes titleResId: Int) {
-        if (activity is BaseActivity<*, *>)
-            (activity as BaseActivity<*, *>).setActionBarTitle(titleResId)
+        if (activity is BaseActivity) (activity as BaseActivity).setActionBarTitle(titleResId)
     }
 }

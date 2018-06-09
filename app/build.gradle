@@ -1,16 +1,11 @@
 apply plugin: 'com.android.application'
 apply plugin: 'kotlin-android'
 apply plugin: 'kotlin-kapt'
-apply plugin: 'kotlin-android-extensions'
 apply plugin: 'com.getkeepsafe.dexcount'
 
-def keystorePropertiesFile = rootProject.file("keystore.properties");
+def keystorePropertiesFile = rootProject.file("keystore.properties")
 def keystoreProperties = new Properties()
 keystoreProperties.load(new FileInputStream(keystorePropertiesFile))
-
-repositories {
-    mavenCentral()
-}
 
 android {
     compileSdkVersion rootProject.ext.COMPILE_SDK_VERSION
@@ -21,12 +16,19 @@ android {
         javaMaxHeapSize "3g"
     }
 
+    compileOptions {
+        sourceCompatibility JavaVersion.VERSION_1_8
+        targetCompatibility JavaVersion.VERSION_1_8
+    }
+
     defaultConfig {
         applicationId "de.mchllngr.androidboilerplatekotlin"
         minSdkVersion rootProject.ext.MIN_SDK_VERSION
         targetSdkVersion rootProject.ext.TARGET_SDK_VERSION
         versionCode rootProject.ext.VERSIONCODE
         versionName rootProject.ext.VERSIONAME
+
+        resConfigs "en", "de"
 
         testInstrumentationRunner "android.support.test.runner.AndroidJUnitRunner"
     }
@@ -35,42 +37,42 @@ android {
         release {
             storeFile file(keystoreProperties['storeFile'])
             storePassword keystoreProperties['storePassword']
-            keyAlias keystoreProperties['keyAlias']
-            keyPassword keystoreProperties['keyPassword']
+            keyAlias keystoreProperties['keyAliasRelease']
+            keyPassword keystoreProperties['keyPasswordRelease']
+        }
+        debug {
+            storeFile file(keystoreProperties['storeFile'])
+            storePassword keystoreProperties['storePassword']
+            keyAlias keystoreProperties['keyAliasDebug']
+            keyPassword keystoreProperties['keyPasswordDebug']
         }
     }
 
     buildTypes {
         release {
-            minifyEnabled true
-            shrinkResources true
-            debuggable false
-            proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
+            postprocessing {
+                removeUnusedCode true
+                removeUnusedResources true
+                obfuscate true
+                optimizeCode true
+                proguardFiles getDefaultProguardFile('proguard-defaults.txt'), 'proguard/proguard-rules.pro'
+            }
             signingConfig signingConfigs.release
         }
 
         debug {
-            minifyEnabled false
-            shrinkResources false
-            debuggable true
+            postprocessing {
+                removeUnusedCode false
+                removeUnusedResources false
+                obfuscate false
+                optimizeCode false
+            }
+            signingConfig signingConfigs.debug
+
             applicationIdSuffix ".debug"
             versionNameSuffix "-debug"
         }
     }
-
-    // Always show the result of every unit test, even if it passes.
-    testOptions.unitTests.all {
-        testLogging {
-            events 'passed', 'skipped', 'failed', 'standardOut', 'standardError'
-        }
-    }
-
-// Currently not working, because kotlin doesn't support lint
-//    // Stop build on stopship-comment (only in release)
-//    lintOptions {
-//        abortOnError true
-//        fatal 'StopShip'
-//    }
 
     sourceSets {
         main.java.srcDirs += 'src/main/kotlin'
@@ -78,38 +80,28 @@ android {
 }
 
 dependencies {
-    compile fileTree(dir: 'libs', include: ['*.jar'])
+    // App dependencies
+    implementation "org.jetbrains.kotlin:kotlin-stdlib:$kotlin_version"
 
-    compile "org.jetbrains.kotlin:kotlin-stdlib:$kotlin_version"
+    implementation "com.android.support:appcompat-v7:$rootProject.ext.SUPPORT_VERSION"
+    implementation "com.android.support:design:$rootProject.ext.SUPPORT_VERSION"
 
-    compile "com.android.support:appcompat-v7:$rootProject.ext.SUPPORT_VERSION"
-    compile "com.android.support:design:$rootProject.ext.SUPPORT_VERSION"
+    implementation "com.jakewharton.timber:timber:$rootProject.ext.TIMBER_VERSION"
 
-    compile "com.hannesdorfmann.mosby3:mvp:$rootProject.ext.MOSBY_VERSION"
+    // Debug-App dependencies
+    debugImplementation "com.facebook.stetho:stetho:$rootProject.ext.STETHO_VERSION"
 
-    compile "com.google.dagger:dagger:$rootProject.ext.DAGGER2_VERSION"
-    kapt "com.google.dagger:dagger-compiler:$rootProject.ext.DAGGER2_VERSION"
-
-    compile "com.jakewharton.timber:timber:$rootProject.ext.TIMBER_VERSION"
-
-    compile "com.github.maxcruz:reactive-permissions:$rootProject.ext.REACTIVE_PERMISSIONS_VERSION"
-
-    debugCompile "com.facebook.stetho:stetho:$rootProject.ext.STETHO_VERSION"
-
-    debugCompile "io.palaima.debugdrawer:debugdrawer:$rootProject.ext.DEBUGDRAWER_VERSION"
-    debugCompile "io.palaima.debugdrawer:debugdrawer-commons:$rootProject.ext.DEBUGDRAWER_VERSION"
-    debugCompile "io.palaima.debugdrawer:debugdrawer-actions:$rootProject.ext.DEBUGDRAWER_VERSION"
-    debugCompile "io.palaima.debugdrawer:debugdrawer-location:$rootProject.ext.DEBUGDRAWER_VERSION"
-    debugCompile "io.palaima.debugdrawer:debugdrawer-scalpel:$rootProject.ext.DEBUGDRAWER_VERSION"
-    debugCompile "io.palaima.debugdrawer:debugdrawer-fps:$rootProject.ext.DEBUGDRAWER_VERSION"
+    debugImplementation "io.palaima.debugdrawer:debugdrawer:$rootProject.ext.DEBUGDRAWER_VERSION"
+    debugImplementation "io.palaima.debugdrawer:debugdrawer-commons:$rootProject.ext.DEBUGDRAWER_VERSION"
+    debugImplementation "io.palaima.debugdrawer:debugdrawer-actions:$rootProject.ext.DEBUGDRAWER_VERSION"
+    debugImplementation "io.palaima.debugdrawer:debugdrawer-scalpel:$rootProject.ext.DEBUGDRAWER_VERSION"
     // Used by DebugDrawer
-    debugCompile "com.google.android.gms:play-services-location:$rootProject.ext.PLAY_SERVICES_LOCATION_VERSION"
-    debugCompile "com.jakewharton.scalpel:scalpel:$rootProject.ext.SCALPEL_VERSION"
-    debugCompile "jp.wasabeef:takt:$rootProject.ext.TAKT_VERSION"
+    debugImplementation "com.jakewharton.scalpel:scalpel:$rootProject.ext.SCALPEL_VERSION"
 
-    testCompile "junit:junit:$rootProject.ext.JUNIT_VERSION"
-    testCompile "org.mockito:mockito-core:$rootProject.ext.MOCKITO_VERSION"
-    androidTestCompile("com.android.support.test.espresso:espresso-core:$rootProject.ext.ESPRESSO_VERSION", {
+    // Test dependencies
+    testImplementation "junit:junit:$rootProject.ext.JUNIT_VERSION"
+    testImplementation "org.mockito:mockito-core:$rootProject.ext.MOCKITO_VERSION"
+    androidTestImplementation("com.android.support.test.espresso:espresso-core:$rootProject.ext.ESPRESSO_VERSION", {
         exclude group: 'com.android.support', module: 'support-annotations'
     })
 }

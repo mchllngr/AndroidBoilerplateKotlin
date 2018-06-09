@@ -9,7 +9,7 @@ import timber.log.Timber
 /**
  * Base-class used for debug initializations.
  */
-open class BaseApp : Application() {
+abstract class BaseApp : Application() {
 
     override fun onCreate() {
         super.onCreate()

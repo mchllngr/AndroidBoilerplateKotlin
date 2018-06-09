@@ -1,26 +1,24 @@
 package de.mchllngr.androidboilerplatekotlin.base
 
+import android.os.Bundle
+import android.support.annotation.LayoutRes
 import android.support.annotation.StringRes
+import android.support.v7.app.AppCompatActivity
 import android.support.v7.widget.Toolbar
-
-import com.hannesdorfmann.mosby3.mvp.MvpBasePresenter
-import com.hannesdorfmann.mosby3.mvp.MvpView
-
 import de.mchllngr.androidboilerplatekotlin.R
 
-/**
- * Base-class for work concerning every [android.app.Activity].
- *
- * @param [V] view-interface for this activity
- * @param [P] presenter for this activity
- */
-abstract class BaseActivity<V : MvpView, P : MvpBasePresenter<V>> : DebugBaseActivity<V, P>() {
+abstract class BaseActivity : AppCompatActivity() {
+
+    @LayoutRes
+    abstract fun getLayoutId(): Int
+
+    override fun onCreate(savedInstanceState: Bundle?) {
+        super.onCreate(savedInstanceState)
+        setContentView(getLayoutId())
+    }
 
     /**
-     * Overrides [android.support.v7.app.AppCompatActivity.setSupportActionBar] to
-     * allow setting the default title when called.
-     *
-     * @param toolbar toolbar to set
+     * Overrides [android.support.v7.app.AppCompatActivity.setSupportActionBar] to allow setting the default title when called.
      */
     override fun setSupportActionBar(toolbar: Toolbar?) {
         super.setSupportActionBar(toolbar)
