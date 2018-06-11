@@ -7,4 +7,4 @@ import de.mchllngr.androidboilerplatekotlin.base.BaseActivity
  *
  * Empty in Release-BuildVariant.
  */
-public abstract class DebugActivity : BaseActivity()
+abstract class DebugActivity : BaseActivity()
