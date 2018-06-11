@@ -33,6 +33,8 @@ android {
         testInstrumentationRunner "android.support.test.runner.AndroidJUnitRunner"
     }
 
+    dataBinding.enabled = true
+
     signingConfigs {
         release {
             storeFile file(keystoreProperties['storeFile'])
@@ -75,7 +77,18 @@ android {
     }
 
     sourceSets {
-        main.java.srcDirs += 'src/main/kotlin'
+        main {
+            java.srcDirs += 'src/main/kotlin'
+            // for merging res-folders together
+            res.srcDirs = ['src/main/res']
+            file('src/main/res-modules')
+                    .listFiles()
+                    .each { res.srcDirs += it.path }
+        }
+        debug.java.srcDirs += 'src/debug/kotlin'
+        release.java.srcDirs += 'src/release/kotlin'
+        test.java.srcDirs += 'src/test/kotlin'
+        androidTest.java.srcDirs += 'src/androidTest/kotlin'
     }
 }
 
@@ -85,8 +98,20 @@ dependencies {
 
     implementation "com.android.support:appcompat-v7:$rootProject.ext.SUPPORT_VERSION"
     implementation "com.android.support:design:$rootProject.ext.SUPPORT_VERSION"
+    implementation "com.android.support:recyclerview-v7:$rootProject.ext.SUPPORT_VERSION"
+    implementation "com.android.support:cardview-v7:$rootProject.ext.SUPPORT_VERSION"
+    implementation "com.android.support.constraint:constraint-layout:$rootProject.ext.CONSTRAINT_LAYOUT_VERSION"
+
+    implementation "android.arch.lifecycle:extensions:$rootProject.ext.LIFECYCLE_VERSION"
+    implementation "android.arch.lifecycle:common-java8:$rootProject.ext.LIFECYCLE_VERSION"
+
+    implementation "org.koin:koin-android:$rootProject.ext.KOIN_VERSION"
+    implementation "org.koin:koin-android-architecture:$rootProject.ext.KOIN_VERSION"
 
     implementation "com.jakewharton.timber:timber:$rootProject.ext.TIMBER_VERSION"
+
+    implementation "io.reactivex.rxjava2:rxjava:$rootProject.ext.RX_JAVA_VERSION"
+    implementation "io.reactivex.rxjava2:rxandroid:$rootProject.ext.RX_ANDROID_VERSION"
 
     // Debug-App dependencies
     debugImplementation "com.facebook.stetho:stetho:$rootProject.ext.STETHO_VERSION"

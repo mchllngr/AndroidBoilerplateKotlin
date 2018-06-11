@@ -8,7 +8,7 @@ buildscript {
         jcenter()
     }
     dependencies {
-        classpath 'com.android.tools.build:gradle:3.2.0-alpha17'
+        classpath 'com.android.tools.build:gradle:3.2.0-alpha18'
         classpath "com.getkeepsafe.dexcount:dexcount-gradle-plugin:0.8.2"
         classpath "org.jetbrains.kotlin:kotlin-gradle-plugin:$kotlin_version"
         classpath "com.github.ben-manes:gradle-versions-plugin:0.17.0" // allows checking for new versions with './gradlew dependencyUpdates -Drevision=release'
@@ -19,9 +19,6 @@ allprojects {
     repositories {
         google()
         jcenter()
-        maven {
-            url "https://jitpack.io"
-        }
     }
 }
 
@@ -45,7 +42,12 @@ ext {
 
     // App dependencies
     SUPPORT_VERSION = "27.1.1"
+    CONSTRAINT_LAYOUT_VERSION = "1.1.1"
+    LIFECYCLE_VERSION = "1.1.1"
+    KOIN_VERSION = "0.9.3"
     TIMBER_VERSION = "4.7.0"
+    RX_JAVA_VERSION = "2.1.14"
+    RX_ANDROID_VERSION = "2.0.2"
 
     // Debug-App dependencies
     STETHO_VERSION = "1.5.0"

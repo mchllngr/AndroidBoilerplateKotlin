@@ -1,21 +1,11 @@
 package de.mchllngr.androidboilerplatekotlin.base
 
-import android.os.Bundle
-import android.support.annotation.LayoutRes
 import android.support.annotation.StringRes
 import android.support.v7.app.AppCompatActivity
 import android.support.v7.widget.Toolbar
 import de.mchllngr.androidboilerplatekotlin.R
 
 abstract class BaseActivity : AppCompatActivity() {
-
-    @LayoutRes
-    abstract fun getLayoutId(): Int
-
-    override fun onCreate(savedInstanceState: Bundle?) {
-        super.onCreate(savedInstanceState)
-        setContentView(getLayoutId())
-    }
 
     /**
      * Overrides [android.support.v7.app.AppCompatActivity.setSupportActionBar] to allow setting the default title when called.
