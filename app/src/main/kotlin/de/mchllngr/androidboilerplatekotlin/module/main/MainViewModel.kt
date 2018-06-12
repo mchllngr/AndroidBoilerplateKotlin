@@ -2,6 +2,7 @@ package de.mchllngr.androidboilerplatekotlin.module.main
 
 import android.arch.lifecycle.MutableLiveData
 import android.arch.lifecycle.ViewModel
+import timber.log.Timber
 
 class MainViewModel : ViewModel() {
 
@@ -11,4 +12,7 @@ class MainViewModel : ViewModel() {
         helloWorld.value = "Hello, World!"
     }
 
+    fun onTextClick() {
+        Timber.d("DEBUG: onTextClick")
+    }
 }

@@ -4,7 +4,7 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools">
 
-    <data>
+    <data class=".module.main.ActivityMainBinding">
         <variable
             name="viewModel"
             type="de.mchllngr.androidboilerplatekotlin.module.main.MainViewModel"/>

@@ -5,7 +5,6 @@ import android.content.Intent
 import android.databinding.DataBindingUtil
 import android.os.Bundle
 import de.mchllngr.androidboilerplatekotlin.R
-import de.mchllngr.androidboilerplatekotlin.databinding.ActivityMainBinding
 import de.mchllngr.androidboilerplatekotlin.debug.base.DebugActivity
 import org.koin.android.ext.android.inject
 
@@ -29,7 +28,8 @@ class MainActivity : DebugActivity() {
         setSupportActionBar(binding.toolbar)
         binding.viewModel = viewModel
 
-//        fab.setOnClickListener { view ->  // TODO
+        // TODO maybe use https://github.com/googlesamples/android-architecture/blob/dev-todo-mvvm-live/todoapp/app/src/main/java/com/example/android/architecture/blueprints/todoapp/SingleLiveEvent.java
+//        fab.setOnClickListener { view ->
 //            Snackbar.make(view, "Replace with your own action", Snackbar.LENGTH_LONG)
 //                    .setAction("Action", null).show()
 //        }
