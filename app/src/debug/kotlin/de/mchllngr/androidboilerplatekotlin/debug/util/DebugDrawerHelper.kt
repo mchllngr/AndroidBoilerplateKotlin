@@ -17,6 +17,7 @@ import java.util.*
  * Helper-class for easier use with [DebugDrawer].
  */
 class DebugDrawerHelper(private val activity: AppCompatActivity) {
+
     /**
      * [String] used for initialising the NightMode-[ActionsModule].
      */
