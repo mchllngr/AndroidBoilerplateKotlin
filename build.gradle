@@ -42,7 +42,7 @@ ext {
 
     // App dependencies
     SUPPORT_VERSION = "27.1.1"
-    CONSTRAINT_LAYOUT_VERSION = "1.1.1"
+    CONSTRAINT_LAYOUT_VERSION = "1.1.2"
     LIFECYCLE_VERSION = "1.1.1"
     KOIN_VERSION = "0.9.3"
     TIMBER_VERSION = "4.7.0"
